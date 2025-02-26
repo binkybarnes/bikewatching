@@ -1,0 +1,98 @@
+:root {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+}
+
+body {
+  font: 100%/1.5 system-ui, sans-serif;
+  display: flex;
+  flex-flow: column;
+  max-width: 80em;
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin: auto;
+  padding: 1em;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 5;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+#map {
+  width: 100%; /* Adjust width to your desired size */
+  height: 100%; /* Adjust height to your desired size */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: subtle shadow for effect */
+  border-radius: 8px; /* Optional: rounded corners */
+}
+
+#map svg {
+  /* background: yellow;
+  opacity: 50%; */
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+
+  circle {
+    pointer-events: auto;
+    --color: color-mix(in oklch, var(--color-departures) calc(100% * var(--departure-ratio)), var(--color-arrivals));
+    fill: var(--color);
+  }
+}
+.legend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  margin-block: 20px;
+  background: linear-gradient(
+    to right,
+    color-mix(in oklch, var(--color-departures) 100%, var(--color-arrivals) 0%) 0%,
+    color-mix(in oklch, var(--color-departures) 75%, var(--color-arrivals) 25%) 25%,
+    color-mix(in oklch, var(--color-departures) 50%, var(--color-arrivals) 50%) 50%,
+    color-mix(in oklch, var(--color-departures) 25%, var(--color-arrivals) 75%) 75%,
+    color-mix(in oklch, var(--color-departures) 0%, var(--color-arrivals) 100%) 100%
+  );
+  color: white;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+
+.legend > div {
+  flex: 1; /* Make text spread evenly */
+  text-align: center;
+}
+
+#tooltip {
+  position: absolute;
+  background: white;
+  padding: 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+input[type="range"] {
+  width: 400px;
+}
+
+time {
+  display: block;
+  font-weight: bold;
+}
+
+em {
+  display: block;
+  color: gray;
+  font-style: italic;
+}
